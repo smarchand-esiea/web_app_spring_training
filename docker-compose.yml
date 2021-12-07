@@ -8,6 +8,15 @@ services:
             - "traefik.http.routers.todolist.middlewares=todolist@docker"
         deploy:
             replicas: 3
+
+    postgres:
+        image: postgres:14.0-alpine
+        container_name: postgres
+        ports:
+            - 5000:5000
+        environment:
+            POSTGRES_PASSWORD: example
+
     traefik:
         image: traefik:2.5
         restart: unless-stopped
